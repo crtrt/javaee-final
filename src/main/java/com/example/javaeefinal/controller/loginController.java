@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 
 @Controller
 public class loginController {
@@ -34,18 +37,6 @@ public class loginController {
         return "index";
     }
 
-//
-//    @RequestMapping(value = "SubmitHomeworkServlet",method = RequestMethod.POST)
-//    public StudentHomework addStudentHomework(@RequestBody StudentHomework studentHomework){
-//        //获取当前时间
-//        Timestamp now = new Timestamp(new Date().getTime());
-//        /**
-//         * 赋值
-//         */
-//        studentHomework.setCreateTime(now);
-//        studentHomeworkService.submitHomework(studentHomework);
-//        return null;
-//    }
 
     @RequestMapping(value="/teacherLogin", method = RequestMethod.POST)
     public String teacherLogin(@ModelAttribute Teacher t){
@@ -80,18 +71,46 @@ public class loginController {
         }
 
     }
-
-
     /**
-     * 展示所有的学生作业
+     * 学生注册
+     * @param sh
+     * @return
      */
-//    @RequestMapping("/readHomework")
-//    public void student(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println("???????????");
-//        List<StudentHomework> list = studentHomeworkService.selectAll();
-//
-//        req.setAttribute("list",list);
-//
-//        req.getRequestDispatcher("/readHomework.jsp").forward(req,resp);
-//    }
+
+    @RequestMapping(value = "studentRegister",method = RequestMethod.POST)
+    public String addStudent(@ModelAttribute Student sh){
+        //获取当前时间
+        Timestamp now = new Timestamp(new Date().getTime());
+
+        sh.setCreate_time(now);
+
+        studentService.addStudent(sh);
+
+        return  "redirect:/index";
+    }
+    /**
+     * 教师注册
+     * @param t
+     * @return
+     */
+
+    @RequestMapping(value = "teacherRegister",method = RequestMethod.POST)
+    public String teacherRegister(@ModelAttribute Teacher t){
+        //获取当前时间
+        Timestamp now = new Timestamp(new Date().getTime());
+
+        t.setCreate_time(now);
+
+        teacherService.teacherRegister(t);
+
+        return  "redirect:/index";
+    }
+
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+
+
 }

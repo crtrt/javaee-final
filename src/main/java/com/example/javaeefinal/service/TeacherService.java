@@ -16,4 +16,9 @@ public class TeacherService {
     public List<Teacher> teacherLogin(Teacher t){
         return mapper.teacherLogin(t);
     }
+
+    @Transactional
+    public void teacherRegister(Teacher t){
+        mapper.teacherRegister(t);
+    }
 }

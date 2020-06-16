@@ -26,6 +26,6 @@ public interface StudentMapper {
     /*
    添加学生Student
     */
-    @Insert("INSERT INTO s_student(id,name,create_time) VALUES (#{id},#{name},#{create_time})")
+    @Insert("INSERT INTO s_student(id,name,create_time,psw) VALUES (#{id},#{name},#{create_time},#{psw})")
     void addStudent(Student sh);
 }

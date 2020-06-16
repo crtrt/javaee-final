@@ -19,10 +19,13 @@
           <form name="form1" action="" method="post" >
               <p><label style="margin-top: 8px" class="label_input">账号</label><input style="margin-top: 8px" type="text" name="id" class="text_field"/></p>
               <p><label class="label_input">密码</label><input type="text" name="psw" class="text_field"/></p>
+              <a href="register" style="color: #1e704d;margin-top: 26px;float:right;margin-right: 5px">注册</a>
               <div id="control">
                   <input type="submit" id="t_btn_login" value="教师登录" onclick = "form1.action='teacherLogin';form1.submit()"/>
                   <input type="submit" id="s_btn_login" value="学生登录" onclick = "form1.action='studentLogin';form1.submit()"/>
+
               </div>
+
           </form>
 
 、
